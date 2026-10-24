@@ -1,0 +1,153 @@
+import type { ActivityItem, SampleFile } from '../types'
+
+/**
+ * SAMPLE DATA ONLY.
+ * These entries are invented for the UI prototype. They are not read from the
+ * user's computer and do not correspond to real files.
+ */
+export const SAMPLE_FILES: SampleFile[] = [
+  {
+    id: 's1',
+    name: 'IMG_4821.jpg',
+    kind: 'image',
+    sizeBytes: 3_560_000,
+    category: 'Photos / Travel',
+    proposedName: '2025-08-14_Goa-beach-sunset.jpg',
+    status: 'pending',
+  },
+  {
+    id: 's2',
+    name: 'scan0023.pdf',
+    kind: 'pdf',
+    sizeBytes: 862_000,
+    category: 'Finance / Invoices',
+    proposedName: '2025-09_Electricity-bill.pdf',
+    status: 'pending',
+  },
+  {
+    id: 's3',
+    name: 'Untitled document (2).docx',
+    kind: 'document',
+    sizeBytes: 57_300,
+    category: 'Work / Proposals',
+    proposedName: 'Q4-Marketing-Proposal-Draft.docx',
+    status: 'pending',
+  },
+  {
+    id: 's4',
+    name: 'Book1_final_FINAL.xlsx',
+    kind: 'spreadsheet',
+    sizeBytes: 219_000,
+    category: 'Finance / Budgets',
+    proposedName: 'Household-Budget-2026.xlsx',
+    status: 'pending',
+  },
+  {
+    id: 's5',
+    name: 'Screenshot 2026-03-02 at 10.14.07.png',
+    kind: 'image',
+    sizeBytes: 1_150_000,
+    category: 'Screenshots',
+    proposedName: '2026-03-02_Dashboard-wireframe.png',
+    status: 'pending',
+  },
+  {
+    id: 's6',
+    name: 'project_backup_old.zip',
+    kind: 'archive',
+    sizeBytes: 50_540_000,
+    category: 'Archives / Projects',
+    proposedName: 'Website-Redesign-Backup-2026-01.zip',
+    status: 'pending',
+  },
+  {
+    id: 's7',
+    name: 'lecture-notes-week3.pdf',
+    kind: 'pdf',
+    sizeBytes: 2_730_000,
+    category: 'Study / Notes',
+    proposedName: 'Research-Methods-Lecture-3-Notes.pdf',
+    status: 'pending',
+  },
+  {
+    id: 's8',
+    name: 'voice_memo_0192.m4a',
+    kind: 'audio',
+    sizeBytes: 6_190_000,
+    category: 'Audio / Voice memos',
+    proposedName: '2026-02-11_Interview-prep-memo.m4a',
+    status: 'pending',
+  },
+  {
+    id: 's9',
+    name: 'final_cut_v3.mp4',
+    kind: 'video',
+    sizeBytes: 327_000_000,
+    category: 'Video / Projects',
+    proposedName: 'Product-Demo-Final-Cut-v3.mp4',
+    status: 'pending',
+  },
+  {
+    id: 's10',
+    name: 'script2.py',
+    kind: 'code',
+    sizeBytes: 4_900,
+    category: 'Code / Scripts',
+    proposedName: 'rename_invoices.py',
+    status: 'pending',
+  },
+  {
+    id: 's11',
+    name: 'resume new.docx',
+    kind: 'document',
+    sizeBytes: 39_800,
+    category: 'Career',
+    proposedName: 'Resume-2026.docx',
+    status: 'pending',
+  },
+  {
+    id: 's12',
+    name: 'tax_docs.zip',
+    kind: 'archive',
+    sizeBytes: 9_540_000,
+    category: 'Finance / Tax',
+    proposedName: 'Tax-Documents-FY2025-26.zip',
+    status: 'pending',
+  },
+]
+
+/** SAMPLE activity history shown before the user does anything. */
+export const SEED_ACTIVITY: ActivityItem[] = [
+  {
+    id: 'seed-1',
+    title: 'Sample suggestions generated',
+    detail: '12 example rename suggestions prepared for the demo workspace.',
+    time: 'Sample · 09:41',
+    state: 'done',
+    sample: true,
+  },
+  {
+    id: 'seed-2',
+    title: 'Sample category rules reviewed',
+    detail: 'Example categories: Finance, Photos, Study, Work.',
+    time: 'Sample · 09:38',
+    state: 'done',
+    sample: true,
+  },
+  {
+    id: 'seed-3',
+    title: 'Sample folder scan queued',
+    detail: 'Waiting for real scanning support in the backend.',
+    time: 'Sample · 09:35',
+    state: 'pending',
+    sample: true,
+  },
+  {
+    id: 'seed-4',
+    title: 'Local model check',
+    detail: 'The app checks /api/health whenever it opens.',
+    time: 'Sample · 09:30',
+    state: 'info',
+    sample: true,
+  },
+]
