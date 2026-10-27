@@ -1,133 +1,179 @@
 # 👻 Memory Ghost
 
-### Give your forgotten files a second life.
+<div align="center">
 
-**Memory Ghost is a local-first AI memory assistant that turns scattered text files into useful summaries, key points, and topics using Gemma 3 through Ollama.**
+### Your files remember. Now your AI can help you, too.
 
-Instead of manually rereading old notes, study materials, and documents, select a folder, choose a supported file, and let your local AI help you rediscover what's inside.
+**An open-weight AI memory assistant that brings forgotten files back to life.**
 
-> 🧠 Your files hold memories. Memory Ghost helps bring them back.
+Turn scattered notes, documents, and text files into meaningful summaries, key insights, and searchable knowledge — powered by **Gemma 3 running locally through Ollama**.
+
+<br/>
+
+![Python](https://img.shields.io/badge/Python-FastAPI-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-TypeScript-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Gemma](https://img.shields.io/badge/AI-Gemma%203-4285F4?style=for-the-badge)
+![Ollama](https://img.shields.io/badge/Runtime-Ollama-black?style=for-the-badge)
+![Local First](https://img.shields.io/badge/Inference-Local--First-7C3AED?style=for-the-badge)
+
+**[Features](#-features) · [How It Works](#-how-it-works) · [Quick Start](#-quick-start) · [Roadmap](#-roadmap)**
+
+</div>
+
+---
+
+## 🌙 The Story Behind Memory Ghost
+
+We all have digital ghosts.
+
+Old lecture notes. Forgotten project files. Research documents buried in folders. Important information that we know we saved somewhere — but can't remember where.
+
+**Memory Ghost gives those files a second life.**
+
+Select a folder, choose a supported file, and let your local AI uncover its summary, topics, key points, and memory category. No hosted AI API is required for the core analysis workflow.
+
+> 🕯️ *Your files hold the memories. Gemma helps you rediscover them.*
 
 ## ✨ Features
 
-- 📂 **Choose a folder** — use the native folder picker to browse your files.
-- 🧠 **AI-powered file analysis** — generate summaries with locally running Gemma 3.
-- 🔑 **Extract key points** — identify important information from supported text files.
-- 🏷️ **Discover topics** — see the main subjects discussed in a file.
-- 👻 **Classify memories** — receive an AI-generated memory category.
-- 🔒 **Local-first inference** — run analysis through Ollama on your own computer rather than a hosted AI API.
-- 🎨 **Focused interface** — use a modern, dark-themed workspace designed to make file exploration easier.
+<table>
+<tr>
+<td width="50%">
 
-## 🎃 Why Memory Ghost?
+### 🗂️ Folder Explorer
+Choose a folder through the native folder picker and explore its files.
 
-Our computers accumulate lecture notes, project documents, personal writing, research, and forgotten files. Often, the information is still useful—we simply can't remember where it is or what it contains.
+</td>
+<td width="50%">
 
-Memory Ghost explores how open-weight AI can help people rediscover that information without depending on a third-party hosted AI service.
+### 🧠 Local AI Analysis
+Use Gemma 3 through Ollama to analyze supported text files on your machine.
 
-The goal is simple: make forgotten digital information easier to revisit, understand, and use.
+</td>
+</tr>
+<tr>
+<td width="50%">
 
-## 🛠️ Technology stack
+### 📝 Intelligent Summaries
+Transform lengthy text into concise, easier-to-review summaries.
 
-| Component | Technology |
+</td>
+<td width="50%">
+
+### 🔑 Key Points & Topics
+Extract important takeaways and identify the main subjects in a file.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🏷️ Memory Classification
+Get an AI-generated category to help understand the type of information.
+
+</td>
+<td width="50%">
+
+### 🔒 Local-First by Design
+Avoid sending file content to a hosted AI API in the intended local Ollama workflow.
+
+</td>
+</tr>
+</table>
+
+## 👻 See the Workflow
+
+```mermaid
+flowchart TD
+    A["📂 Choose a Folder"] --> B["📄 Select a Supported File"]
+    B --> C["⚡ FastAPI Reads the File"]
+    C --> D["🧠 Local Ollama + Gemma 3"]
+    D --> E["✨ Generate Summary"]
+    D --> F["🔑 Extract Key Points"]
+    D --> G["🏷️ Identify Topics & Category"]
+    E --> H["👻 Explore Your Memory"]
+    F --> H
+    G --> H
+```
+
+The analysis workflow runs through your local backend and Ollama service. AI-generated results are displayed in the application for you to review.
+
+## 🛠️ Built With
+
+| Technology | Role |
 |---|---|
-| Frontend | React, TypeScript |
-| Build tool | Vite |
-| Styling | CSS |
-| Backend | Python, FastAPI |
-| Local AI runtime | Ollama |
-| AI model | Gemma 3 (`gemma3:4b`) |
-| Memory database foundation | SQLite |
+| React + TypeScript | Interactive frontend |
+| Vite | Frontend development and build |
+| Python + FastAPI | Backend API |
+| Ollama | Local model runtime |
+| Gemma 3 (`gemma3:4b`) | Text analysis and summarization |
+| SQLite | Initial database foundation for future persistent memories |
 
-## ⚙️ How it works
+## 🖥️ Supported Files
 
-1. **Select a folder:** choose the directory containing your files.
-2. **Choose a file:** select a supported text-based file from the displayed list.
-3. **Analyze locally:** the FastAPI backend reads the file and sends its text to Gemma 3 through your local Ollama service.
-4. **Explore the results:** review the generated summary, topics, key points, and memory category.
+| Format | Typical use |
+|---|---|
+| `.txt` | Notes and plain-text documents |
+| `.md` | Markdown notes and documentation |
+| `.json` | Structured text data |
+| `.csv` | Tabular text data |
 
-### Supported file formats
+**Current analysis limits:** Files must be no larger than 1 MB, and the backend limits the text submitted for analysis to 12,000 characters. Longer content may be truncated.
 
-- `.txt`
-- `.md`
-- `.json`
-- `.csv`
+## 🚀 Quick Start
 
-The current analysis endpoint accepts files up to 1 MB and limits the text sent for analysis to 12,000 characters. Longer content may be truncated.
+Get your local Memory Ghost running in a few steps.
 
-**Current scope:** Memory Ghost analyzes selected files and displays AI-generated results. Persistent saving and retrieval of analyzed memories, automatic file organization, and desktop packaging are future improvements.
+### 1. Requirements
 
-## 🔐 Privacy and responsible AI
+Install:
 
-Memory Ghost is designed around local inference:
-
-- AI requests are sent to your locally running Ollama service.
-- The application does not require a hosted AI API key for its core analysis workflow.
-- File content is read by the backend for analysis; this is different from a metadata-only workflow.
-- AI-generated summaries and classifications may contain mistakes. Review the results before relying on them.
-- Only select files you intend to analyze, especially when they contain personal or confidential information.
-
-Local inference reduces reliance on external AI services, but it does not by itself guarantee complete device or data security. Your computer, installed software, and local configuration still matter.
-
-## 🚀 Getting started
-
-### Prerequisites
-
-Install the following:
-
-- Python 3.10 or newer
-- Node.js and npm
-- Git
+- [Python](https://www.python.org/downloads/) 3.10+
+- [Node.js](https://nodejs.org/)
 - [Ollama](https://ollama.com/download)
+- Git
 
-### 1. Download the project
+### 2. Get the project
 
 ```bash
 git clone https://github.com/Shikha18Shukla/LazyDesk-AI.git
 cd LazyDesk-AI
 ```
 
-This repository currently contains the Memory Ghost adaptation.
+> This repository currently contains the Memory Ghost adaptation.
 
-### 2. Download Gemma 3
+### 3. Prepare the AI model
 
-Start Ollama, then run:
+Start Ollama and download Gemma 3:
 
 ```bash
 ollama pull gemma3:4b
 ```
 
-Confirm that the model is available:
+Verify that it is installed:
 
 ```bash
 ollama list
 ```
 
-### 3. Set up the Python backend
+### 4. Start the backend
 
-From the project root, create and activate a virtual environment if you don't already have one:
-
-**Windows PowerShell**
+From the project root, open a terminal in PowerShell:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r backend\requirements.txt
-```
-
-Start the backend:
-
-```powershell
 python -m uvicorn main:app --app-dir backend --reload
 ```
 
-The API runs at:
+Backend documentation: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-- API documentation: http://127.0.0.1:8000/docs
-- Health check: http://127.0.0.1:8000/api/health
+Health endpoint: [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
 
-### 4. Set up the frontend
+### 5. Start the frontend
 
-Open a second terminal:
+Open a **second terminal** in the project root:
 
 ```powershell
 cd frontend
@@ -135,55 +181,100 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite, usually:
+Open the local address printed by Vite, usually [http://localhost:5173](http://localhost:5173).
 
-http://localhost:5173
+### 6. Bring your files back to life
 
-### 5. Run Memory Ghost
+1. Select a folder.
+2. Choose a supported text file.
+3. Run the AI analysis.
+4. Review the summary, topics, key points, and memory category.
 
-Make sure Ollama is running, the Gemma 3 model is installed, and both the backend and frontend are active.
+**Tip:** Start with a small, non-sensitive test file while checking your setup.
 
-Then select a folder, choose a supported file, and run the AI analysis.
+## 🔐 Privacy & Responsible AI
+
+Memory Ghost is designed to run AI inference locally through Ollama.
+
+- **Local inference:** The core analysis workflow uses your local model instead of a hosted AI API.
+- **Explicit file selection:** You choose which folder and file to analyze.
+- **Transparent processing:** The backend reads supported file content to generate its analysis.
+- **Human review:** AI-generated information can be incomplete or incorrect, so review important results.
+- **Responsible use:** Avoid processing sensitive documents unless you understand your local security configuration.
+
+Local inference can reduce external data sharing, but it is not a guarantee of complete security. Protect your device, files, and local services.
+
+## 🌍 Why Open-Weight AI?
+
+AI should be something developers can explore, understand, and build with — not only consume through remote services.
+
+Memory Ghost uses **Gemma 3** with **Ollama** to demonstrate how open-weight models can power practical applications on a personal computer.
+
+Open innovation helps developers:
+
+- 🧪 Experiment with AI systems and build new applications.
+- 🛠️ Adapt tools to their own needs and workflows.
+- 🔍 Learn from inspectable implementations.
+- 🌱 Share improvements and encourage wider participation.
+- 🔐 Explore local inference for workflows where external API dependence is undesirable.
+
+This project is a small example of turning those possibilities into a useful, hands-on application.
 
 ## 🗺️ Roadmap
 
-- [x] React and TypeScript interface
+### ✅ Implemented
+
+- [x] React and TypeScript workspace
 - [x] FastAPI backend
-- [x] Local Ollama connectivity
-- [x] Native folder selection
-- [x] AI-powered file summaries
-- [x] Topic extraction and key-point generation
-- [x] Memory classification
-- [x] Initial SQLite database foundation
-- [ ] Persist analyzed memories in SQLite
-- [ ] Browse and search previously saved memories
-- [ ] Add memory deletion and management controls
-- [ ] Improve automated testing and error handling
-- [ ] Package the application as a desktop app
+- [x] Ollama connectivity check
+- [x] Native folder picker
+- [x] Supported-file listing and selection
+- [x] Local Gemma 3 analysis
+- [x] Summary, topics, key points, and memory category display
+- [x] Initial SQLite database schema
 
-## 🌱 Why open-source AI matters
+### 🔮 Coming Next
 
-Open-weight models make it possible for developers to experiment, build, and learn without relying exclusively on proprietary hosted AI APIs.
+- [ ] Save analyzed memories to SQLite
+- [ ] Browse previously saved memories
+- [ ] Search memories by keyword or topic
+- [ ] Delete individual memories
+- [ ] Add automated tests and robust error handling
+- [ ] Package the app for desktop use
 
-With Gemma 3 and Ollama, Memory Ghost demonstrates how local inference can support a practical application: understanding and rediscovering information stored on your own computer.
+*The roadmap distinguishes the existing analysis workflow from features that still need implementation.*
 
-Open innovation also gives developers the opportunity to inspect implementations, adapt ideas, share improvements, and build tools around their own needs. Model licenses and the licenses of reused code still need to be respected.
+## 🎬 Demo
 
-## 👩‍💻 Project information
+**See Memory Ghost in action:** add your recorded demo link here before publishing.
 
+If you are sharing a video, show the folder selection, the chosen test file, and the resulting AI analysis. Use a sample document without private information.
+
+## 👩‍💻 About the Project
+
+**Creator:** Shikha Shukla  
 **Project:** Memory Ghost  
-**Created by:** Shikha Shukla  
-**AI model:** Gemma 3 (`gemma3:4b`)  
-**Runtime:** Ollama  
+**Model:** Gemma 3 (`gemma3:4b`)  
+**Inference runtime:** Ollama  
 **Backend:** FastAPI  
 **Frontend:** React + TypeScript
 
-### Acknowledgment
+### Acknowledgment & Licensing
 
-Memory Ghost was developed by adapting the existing [LazyDesk-AI repository](https://github.com/Shikha18Shukla/LazyDesk-AI). The Memory Ghost-specific interface and file-analysis workflow build on that codebase.
+Memory Ghost was developed by adapting the [LazyDesk-AI repository](https://github.com/Shikha18Shukla/LazyDesk-AI).
 
-The upstream repository currently states that no license has been specified. This acknowledgment is not a substitute for permission to redistribute code. The licensing and attribution requirements for the reused code must be resolved before redistributing it as a separate project.
+The upstream README states that the repository does not currently specify a license. This acknowledgment does not grant permission to redistribute the original code. Resolve the licensing and attribution requirements before publishing a separate redistributed copy.
+
+Gemma and Ollama also have their own applicable terms; review the relevant terms before distributing the application or model.
 
 ---
 
-*Bringing forgotten files back to life, one memory at a time. 👻*
+<div align="center">
+
+### 🕯️ Don't let your knowledge disappear into digital clutter.
+
+**Bring your files back to life with Memory Ghost. 👻**
+
+*Built with curiosity, local AI, and a little Halloween magic.*
+
+</div>

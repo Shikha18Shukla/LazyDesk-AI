@@ -7,6 +7,39 @@ import json
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog
+from pathlib import Path
+import tkinter as tk
+from tkinter import filedialog
+import sqlite3
+from datetime import datetime, timezone
+
+
+# Persistent memory database
+DATABASE_PATH = Path(__file__).resolve().parent / "memory_ghost.db"
+
+
+def get_db_connection():
+    connection = sqlite3.connect(DATABASE_PATH)
+    connection.row_factory = sqlite3.Row
+    return connection
+
+
+def initialize_database():
+    with get_db_connection() as connection:
+        connection.execute("""
+            CREATE TABLE IF NOT EXISTS memories (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                filename TEXT NOT NULL,
+                summary TEXT NOT NULL,
+                topics TEXT NOT NULL DEFAULT '[]',
+                key_points TEXT NOT NULL DEFAULT '[]',
+                memory_type TEXT NOT NULL DEFAULT 'General',
+                created_at TEXT NOT NULL
+            )
+        """)
+
+
+initialize_database()
 
 app = FastAPI(title="LazyDesk AI")
 
