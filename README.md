@@ -1,97 +1,94 @@
-<div align="center">
+# 👻 Memory Ghost
 
-# ✦ LazyDesk AI
+### Give your forgotten files a second life.
 
-### Your files. Your space. Your AI.
+**Memory Ghost is a local-first AI memory assistant that turns scattered text files into useful summaries, key points, and topics using Gemma 3 through Ollama.**
 
-**A local-first, AI-powered file organizer that helps you make sense of digital clutter — without sending your files to a hosted AI API.**
+Instead of manually rereading old notes, study materials, and documents, select a folder, choose a supported file, and let your local AI help you rediscover what's inside.
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=20232A)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-UI-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Ollama](https://img.shields.io/badge/Ollama-Local_AI-111111?style=for-the-badge)](https://ollama.com/)
+> 🧠 Your files hold memories. Memory Ghost helps bring them back.
 
-*Less searching. Less mess. More focus.*
+## ✨ Features
 
-</div>
+- 📂 **Choose a folder** — use the native folder picker to browse your files.
+- 🧠 **AI-powered file analysis** — generate summaries with locally running Gemma 3.
+- 🔑 **Extract key points** — identify important information from supported text files.
+- 🏷️ **Discover topics** — see the main subjects discussed in a file.
+- 👻 **Classify memories** — receive an AI-generated memory category.
+- 🔒 **Local-first inference** — run analysis through Ollama on your own computer rather than a hosted AI API.
+- 🎨 **Focused interface** — use a modern, dark-themed workspace designed to make file exploration easier.
 
----
+## 🎃 Why Memory Ghost?
 
-## 🌌 The idea
+Our computers accumulate lecture notes, project documents, personal writing, research, and forgotten files. Often, the information is still useful—we simply can't remember where it is or what it contains.
 
-Our computers collect PDFs, screenshots, assignments, notes, downloads, images, and files whose names no longer mean anything to us. Finding the right one can become a task of its own.
+Memory Ghost explores how open-weight AI can help people rediscover that information without depending on a third-party hosted AI service.
 
-**LazyDesk AI** combines a focused desktop-style workspace with a local language model to help suggest how a file could be categorized and renamed. It uses Ollama to run AI on your own machine.
+The goal is simple: make forgotten digital information easier to revisit, understand, and use.
 
-> **Local-first by design:** the intended workflow sends file metadata and prompts to your local Ollama service, not a hosted AI API. Review the code and configuration before using it with sensitive information.
+## 🛠️ Technology stack
 
-## ✨ What it aims to do
+| Component | Technology |
+|---|---|
+| Frontend | React, TypeScript |
+| Build tool | Vite |
+| Styling | CSS |
+| Backend | Python, FastAPI |
+| Local AI runtime | Ollama |
+| AI model | Gemma 3 (`gemma3:4b`) |
+| Memory database foundation | SQLite |
 
-- **🗂️ One organized workspace** — explore file-organization ideas through a focused dashboard.
-- **🧠 AI-assisted suggestions** — use Gemma 3 through Ollama to suggest a category and clearer filename from file metadata.
-- **🔎 File metadata awareness** — use extensions and file sizes to make a folder easier to scan.
-- **📊 Dedicated screens** — Overview, File Organizer, Activity, and Settings pages.
-- **🔌 Local AI status** — check whether the backend can reach Ollama and whether the configured model is available.
-- **🪟 Folder selection** — folder scanning is a work in progress; verify the folder-picker endpoint and UI connection in your current checkout before relying on it.
+## ⚙️ How it works
 
-### Current status
+1. **Select a folder:** choose the directory containing your files.
+2. **Choose a file:** select a supported text-based file from the displayed list.
+3. **Analyze locally:** the FastAPI backend reads the file and sends its text to Gemma 3 through your local Ollama service.
+4. **Explore the results:** review the generated summary, topics, key points, and memory category.
 
-This is an active work in progress. The interface includes sample workspace data, and the backend provides health-check and AI-analysis routes. Not every UI control is necessarily connected end to end yet.
+### Supported file formats
 
-## 🧰 Tech stack
+- `.txt`
+- `.md`
+- `.json`
+- `.csv`
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| Frontend | React + TypeScript | Interactive workspace |
-| Build tooling | Vite | Development server and production build |
-| Styling | CSS | Dark, violet-accented interface |
-| Backend | Python + FastAPI | Local API |
-| Validation | Pydantic | Request validation |
-| Local inference | Ollama + `gemma3:4b` | AI-powered suggestions |
-| HTTP client | `requests` | Connect to local Ollama |
+The current analysis endpoint accepts files up to 1 MB and limits the text sent for analysis to 12,000 characters. Longer content may be truncated.
 
-## 🏗️ Project structure
+**Current scope:** Memory Ghost analyzes selected files and displays AI-generated results. Persistent saving and retrieval of analyzed memories, automatic file organization, and desktop packaging are future improvements.
 
-```text
-LazyDesk-AI/
-├── backend/
-│   ├── main.py
-│   ├── requirements.txt
-│   └── .venv/                 # Local environment; not committed
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/        # Shared UI and sidebar
-│   │   ├── data/              # Sample workspace data
-│   │   ├── hooks/             # Health and workspace hooks
-│   │   ├── pages/             # Overview, Organizer, Activity, Settings
-│   │   ├── services/          # Frontend API client
-│   │   ├── utils/             # Formatting and file-kind helpers
-│   │   └── App.tsx
-│   ├── package.json
-│   └── vite.config.ts
-├── .gitignore
-└── README.md
-```
+## 🔐 Privacy and responsible AI
 
-## 🚀 Get started
+Memory Ghost is designed around local inference:
+
+- AI requests are sent to your locally running Ollama service.
+- The application does not require a hosted AI API key for its core analysis workflow.
+- File content is read by the backend for analysis; this is different from a metadata-only workflow.
+- AI-generated summaries and classifications may contain mistakes. Review the results before relying on them.
+- Only select files you intend to analyze, especially when they contain personal or confidential information.
+
+Local inference reduces reliance on external AI services, but it does not by itself guarantee complete device or data security. Your computer, installed software, and local configuration still matter.
+
+## 🚀 Getting started
 
 ### Prerequisites
+
+Install the following:
 
 - Python 3.10 or newer
 - Node.js and npm
 - Git
 - [Ollama](https://ollama.com/download)
 
-### 1. Clone the repository
+### 1. Download the project
 
 ```bash
 git clone https://github.com/Shikha18Shukla/LazyDesk-AI.git
 cd LazyDesk-AI
 ```
 
-### 2. Download the local model
+This repository currently contains the Memory Ghost adaptation.
+
+### 2. Download Gemma 3
 
 Start Ollama, then run:
 
@@ -99,170 +96,94 @@ Start Ollama, then run:
 ollama pull gemma3:4b
 ```
 
-The model takes several gigabytes of disk space. Response speed depends on your computer's hardware and available memory.
+Confirm that the model is available:
 
-### 3. Set up the backend
+```bash
+ollama list
+```
+
+### 3. Set up the Python backend
+
+From the project root, create and activate a virtual environment if you don't already have one:
 
 **Windows PowerShell**
 
 ```powershell
-py -m venv backend\.venv
-.\backend\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install -r backend\requirements.txt
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r backend\requirements.txt
 ```
 
-**macOS / Linux**
+Start the backend:
 
-```bash
-python3 -m venv backend/.venv
-source backend/.venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r backend/requirements.txt
-```
-
-Start the API from the project root:
-
-```bash
+```powershell
 python -m uvicorn main:app --app-dir backend --reload
 ```
 
-- API base: `http://127.0.0.1:8000`
-- Interactive API docs: `http://127.0.0.1:8000/docs`
+The API runs at:
+
+- API documentation: http://127.0.0.1:8000/docs
+- Health check: http://127.0.0.1:8000/api/health
 
 ### 4. Set up the frontend
 
-Open a **second terminal** at the project root:
+Open a second terminal:
 
-```bash
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Open the exact URL printed by Vite (often `http://localhost:5173`). If that port is busy, Vite may choose another one.
+Open the local URL printed by Vite, usually:
 
-### 5. Confirm local AI connectivity
+http://localhost:5173
 
-With Ollama, the backend, and frontend running:
+### 5. Run Memory Ghost
 
-1. Open the frontend URL.
-2. Check the Local AI connection indicator.
-3. Visit `http://127.0.0.1:8000/docs` and test `GET /api/health`.
-4. If the model is offline, verify Ollama is running and `gemma3:4b` is installed.
+Make sure Ollama is running, the Gemma 3 model is installed, and both the backend and frontend are active.
 
-Useful checks:
+Then select a folder, choose a supported file, and run the AI analysis.
 
-```bash
-ollama list
-ollama run gemma3:4b
-```
+## 🗺️ Roadmap
 
-## 🔌 API overview
+- [x] React and TypeScript interface
+- [x] FastAPI backend
+- [x] Local Ollama connectivity
+- [x] Native folder selection
+- [x] AI-powered file summaries
+- [x] Topic extraction and key-point generation
+- [x] Memory classification
+- [x] Initial SQLite database foundation
+- [ ] Persist analyzed memories in SQLite
+- [ ] Browse and search previously saved memories
+- [ ] Add memory deletion and management controls
+- [ ] Improve automated testing and error handling
+- [ ] Package the application as a desktop app
 
-| Method | Route | Purpose |
-|---|---|---|
-| `GET` | `/api/health` | Checks Ollama connectivity and model availability |
-| `POST` | `/api/analyze` | Requests an AI suggestion for file metadata |
+## 🌱 Why open-source AI matters
 
-Use `/docs` as the source of truth for routes available in your current checkout.
+Open-weight models make it possible for developers to experiment, build, and learn without relying exclusively on proprietary hosted AI APIs.
 
-### Example analysis request
+With Gemma 3 and Ollama, Memory Ghost demonstrates how local inference can support a practical application: understanding and rediscovering information stored on your own computer.
 
-```json
-{
-  "filename": "lecture_notes_final_v3.pdf",
-  "extension": ".pdf",
-  "size_bytes": 245760
-}
-```
+Open innovation also gives developers the opportunity to inspect implementations, adapt ideas, share improvements, and build tools around their own needs. Model licenses and the licenses of reused code still need to be respected.
 
-The endpoint is designed to return the original filename and a structured model suggestion. The exact response fields are defined by `backend/main.py`.
+## 👩‍💻 Project information
 
-## 🔐 Privacy and safety
+**Project:** Memory Ghost  
+**Created by:** Shikha Shukla  
+**AI model:** Gemma 3 (`gemma3:4b`)  
+**Runtime:** Ollama  
+**Backend:** FastAPI  
+**Frontend:** React + TypeScript
 
-- AI inference is intended to run locally through Ollama.
-- The analysis request uses file metadata; it does not need the file's contents.
-- Review the source code before processing confidential or personal files.
-- Scan only folders you deliberately select.
-- Review AI suggestions before applying any future bulk rename or move operation.
-- Never commit `.env` files, API keys, private documents, or personal data.
+### Acknowledgment
 
-## 🧭 Roadmap
+Memory Ghost was developed by adapting the existing [LazyDesk-AI repository](https://github.com/Shikha18Shukla/LazyDesk-AI). The Memory Ghost-specific interface and file-analysis workflow build on that codebase.
 
-- [x] React + TypeScript workspace UI
-- [x] FastAPI backend foundation
-- [x] Local Ollama health check
-- [x] Structured AI analysis endpoint
-- [ ] Fully connect folder selection to the UI
-- [ ] Approve suggestions before applying changes
-- [ ] Safe file move/rename workflow with undo
-- [ ] Automated tests and broader error handling
-- [ ] Easier desktop packaging
+The upstream repository currently states that no license has been specified. This acknowledgment is not a substitute for permission to redistribute code. The licensing and attribution requirements for the reused code must be resolved before redistributing it as a separate project.
 
-Roadmap checkboxes describe project direction; update them as features become fully implemented and tested.
+---
 
-## 🛠️ Troubleshooting
-
-<details>
-<summary><strong>Local AI shows Offline</strong></summary>
-
-1. Confirm Ollama is running.
-2. Run `ollama list` and check for `gemma3:4b`.
-3. Open `http://127.0.0.1:8000/docs` and test `GET /api/health`.
-4. Restart the backend after configuration changes.
-</details>
-
-<details>
-<summary><strong>The frontend cannot reach the backend</strong></summary>
-
-- Confirm the API is running at `http://127.0.0.1:8000`.
-- Check the browser console and backend terminal.
-- Ensure FastAPI CORS allows the frontend origin.
-- Check `frontend/src/services/api.ts` for the API base URL.
-</details>
-
-<details>
-<summary><strong>Ollama is slow</strong></summary>
-
-Local inference speed depends on RAM, CPU/GPU, and model size. The first response may take longer while the model loads.
-</details>
-
-<details>
-<summary><strong>PowerShell activation fails</strong></summary>
-
-You can run the environment's Python directly:
-
-```powershell
-.\backend\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
-.\backend\.venv\Scripts\python.exe -m uvicorn main:app --app-dir backend --reload
-```
-</details>
-
-## 🤝 Contributing
-
-Bug reports, usability ideas, documentation improvements, and pull requests are welcome.
-
-1. Fork the repository.
-2. Create a focused branch: `git checkout -b feat/your-improvement`
-3. Make and test your change.
-4. Commit with a clear message.
-5. Open a pull request explaining the problem and solution.
-
-Please do not commit generated files, virtual environments, secrets, or personal data.
-
-## 📜 License
-
-A license has not been specified yet. Until a license file is added, do not assume that the repository grants permission to reuse, modify, or redistribute the code. Add an open-source license before inviting external reuse.
-
-## 💜 Built with curiosity
-
-LazyDesk AI is a learning-in-public project exploring local AI, practical UX, and a calmer relationship with digital clutter.
-
-If you like the idea, ⭐ star the repository, open an issue, or contribute an improvement.
-
-<div align="center">
-
-**Make room for what matters.**
-
-</div>
+*Bringing forgotten files back to life, one memory at a time. 👻*
